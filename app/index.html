@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Deep UI - Tests</title>
+    <title>Самый красивый блог</title>
 
     <!-- Website icon -->
-    <link rel="icon" type="image/png" href="http://placehold.it/20x20">
+    <link rel="icon" type="image/png" href="../icon20.png">
     <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="http://placehold.it/200x200">
+    <link rel="apple-touch-icon" href="../icon.png">
     
     <!-- CSS includes -->
     <link rel="stylesheet" href="../dist/css/app.css">
@@ -29,11 +29,72 @@
     <meta property="og:url" content="" />
     <meta property="og:description" content="" />
     <meta property="og:locale" content="en_US">
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBLdDbGts3sjPbYKE7j2Tw03iAWWABgm34",
+        authDomain: "atomlabs-b8da9.firebaseapp.com",
+        databaseURL: "https://atomlabs-b8da9.firebaseio.com",
+        projectId: "atomlabs-b8da9",
+        storageBucket: "atomlabs-b8da9.appspot.com",
+        messagingSenderId: "394511887133"
+    };
+    firebase.initializeApp(config);
+    </script>
 </head>
 <body>
-    <h1>Hello Webpack!</h1>
 
-    <p style="font-weight: 300">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit commodi dignissimos temporibus? Sapiente rem culpa dicta commodi nesciunt eligendi esse est odit quod architecto libero voluptas, cum cupiditate quisquam ex excepturi laboriosam ducimus atque. Esse quasi, nostrum consectetur, officiis cupiditate minima ipsum exercitationem est sed facere corrupti placeat sit sunt aperiam velit quos doloremque. Sint ullam doloremque soluta minima perspiciatis laudantium ex, nesciunt necessitatibus ut dolores? In incidunt sunt est officiis id, ut sequi explicabo voluptatum? Distinctio architecto exercitationem amet excepturi ratione ea voluptas, voluptatem molestias fugiat quidem sed corrupti, ducimus neque temporibus. Repudiandae, animi suscipit. Numquam similique nobis quae?</p>
+    <div id="loader" class="uk-width-1-1 uk-padding">
+        <div uk-spinner></div>
+        <span class="uk-margin-left"></span>
+    </div>
+
+    <div id="container" class="uk-hidden">
+    
+        <div id="navbar" class="uk-position-relative">
+            <img class="uk-width-1-1" src="https://source.unsplash.com/iNEXVlX-RLs/1900x900" alt="">
+            <div class="uk-position-top">
+                <nav class="uk-navbar-container uk-navbar-transparent uk-light" uk-navbar>
+                    <div class="uk-navbar-left">
+                        <ul class="uk-navbar-nav">
+                            <li class="uk-active"><a href="/">{{ home }}</a></li>
+                            <li><a href="#about">{{ about }}</a></li>
+                            <li><a href="#other">{{ other }}</a>
+                                <div class="uk-navbar-dropdown">
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        <li v-for="otherdrop in otherdrops"><a v-bind:href="otherdrop.link">{{ otherdrop.text }}</a></li>
+                                        <li class="uk-nav-divider"></li>
+                                        <li><a v-bind:href="otherdropbottom.link">{{ otherdropbottom.text }}</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <section class="uk-flex uk-flex-around uk-flex-wrap uk-padding uk-background-muted">
+            <div id="about" class="uk-card uk-card-default uk-card-body uk-margin-small uk-width-2-5@m">
+                <h3 class="uk-card-title">{{ title }}</h3>
+                <p>{{ body }}</p>
+            </div>
+            <div id="other" class="uk-card uk-card-default uk-card-body uk-margin-small uk-width-2-5@m">
+                <h3 class="uk-card-title">{{ title }}</h3>
+                <p>{{ body }}</p>
+            </div>
+        </section>
+
+        <footer id="footer" class="uk-padding uk-background-secondary">
+            <a class="uk-text-bold uk-text-success" v-bind:href="copy.link">{{ copy.text }}</a>
+            <p class="uk-padding-bottom uk-text-right">2018</p>
+        </footer>
+
+    </div>
+    
 
     <!-- JavaScript includes -->
     <script src="../dist/js/app.js"></script>
