@@ -23,7 +23,7 @@ function AddProgLoader(count) {
 
 
 // Firebase
-var database = firebase.database();
+let database = firebase.database();
 // Object Post
 class FireDir {
     constructor(link = "") {
@@ -74,43 +74,20 @@ class FireDir {
     }
 }
 
-// SETUP 
-let root = new FireDir();
-root.push({
-    postcollection: [
-        {title: "Первый пост", text: "Постоянный количественный рост и сфера нашей активности", img: "https://source.unsplash.com/7nsqPSnYCoY"},
-        {title: "Второй пост", text: "Постоянный количественный рост и сфера нашей активности", img: "https://source.unsplash.com/F0bx43QKhRA"},
-        {title: "Третий пост", text: "Постоянный количественный рост и сфера нашей активности", img: "https://source.unsplash.com/9wociMvaquU"},
-        {title: "Последний пост", text: "Постоянный количественный рост и сфера нашей активности", img: "https://source.unsplash.com/DlkF4-dbCOU"},
-    ],
-    navbar: {
-        home: 'Самый красивый блог',
-        about: 'Обо мне',
-        other: 'Ссылки',
-        otherdrops: [
-            { text: 'В контакте', link: "https://vk.com/id276829154" },
-            { text: 'В Фейскбуке', link: "https://www.facebook.com/Nicolay.Kiselev.V" }
-        ],
-        otherdropbottom: { text: 'Автор: Киселев', link: "#" },
-        imageurl: "https://source.unsplash.com/iNEXVlX-RLs/1900x900"
-    },
-    about: {
-        seen: true,
-        title: "Обо мне",
-        body: "Постоянный количественный рост и сфера нашей активности в значительной степени обуславливает создание дальнейших направлений развития. Повседневная практика показывает, что новая модель организационной деятельности способствует подготовки и реализации дальнейших направлений развития. Идейные соображения высшего порядка, а также постоянный количественный рост и сфера нашей активности способствует подготовки и реализации системы обучения кадров, соответствует насущным потребностям. Значимость этих проблем настолько очевидна, что постоянный количественный рост и сфера нашей активности в значительной степени обуславливает создание новых предложений."
-    },
-    other: {
-        seen: false,
-        title: "Дополнительно",
-        body: "Если что-то нужно сказать еще. Возможно и нет, но тогда этот текст останется здесь. Оставь здесь контакты свои например."
-    },
-    footer: {
-        copy: {
-            text: 'By Kiselev Nikolai',
-            link: 'https://github.com/yuccienikolay/FireKittenCMS'
-        }
-    }
-})
+
+// SETUP
+if ($("#hackboard").parent().length) {
+    UIkit.notification("Привет, владыка. Поступай мудро и аккуратно.");
+    let root = new FireDir();
+    root.pull(function(val) {
+        $("#hackboard").val(JSON.stringify(val, null, "\t"));
+        $("#hackok").click(function() {
+            let update = JSON.parse($("#hackboard").val());
+            root.push(update);
+            UIkit.notification("Все поменялось.");
+        });
+    });
+}
 // FILL WITH FIRE
 function letfirebase(html) {
     let chain = {};
