@@ -1,5 +1,6 @@
 # WebPack ignores
 
+/dist
 /node_modules
 /test/js
 /test/browsertest/js
@@ -10,3 +11,4 @@
 /coverage
 .DS_Store
 *.log
+ARCH*
